@@ -23,12 +23,6 @@ public class PlayerMovement : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
     }
 
-    void Update()
-    {
-        Look();
-
-    }
-
     void FixedUpdate()
     {
         Move();
@@ -37,13 +31,6 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
         rigidbody.MovePosition(transform.position + position * stats.MovementSpeed * Time.deltaTime);
-    }
-    private void Look()
-    {
-        if (position != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(position);
-        }
     }
 
     //Event System
