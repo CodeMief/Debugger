@@ -15,4 +15,9 @@ public class CollisionProperty : DebugPropertyBase
     }
 
     public override string GetName() => "Collision";
+
+    public override bool GetPropertyState()
+    {
+       return col.enabled;
+    }
 }

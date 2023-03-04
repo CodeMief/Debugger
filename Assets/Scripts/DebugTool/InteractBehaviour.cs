@@ -32,4 +32,8 @@ public class InteractBehaviour : MonoBehaviour
     {
         properties[name].Activate();
     }
+    public bool GetPropertyState(string name)
+    {
+        return properties[name].GetPropertyState();
+    }
 }

@@ -18,4 +18,9 @@ public class ColorChangeProperty : DebugPropertyBase
     }
 
     public override string GetName() => "Change Color";
+
+    public override bool GetPropertyState()
+    {
+       return renderer.material == default;
+    }
 }

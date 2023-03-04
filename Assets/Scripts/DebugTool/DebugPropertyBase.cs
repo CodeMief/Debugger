@@ -6,4 +6,5 @@ public abstract class DebugPropertyBase: MonoBehaviour
 {
    public abstract void Activate();
     public abstract string GetName();
+    public abstract bool GetPropertyState();
 }
