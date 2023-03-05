@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -9,6 +10,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions
     public event UnityAction attackEvent;
     public event UnityAction interactEvent;
     public GameInput gameInput;
+    public event UnityAction<Vector2> lookEvent;
 
     private void OnEnable()
     {
@@ -16,14 +18,28 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions
         {
             gameInput = new GameInput();
             gameInput.Gameplay.SetCallbacks(this);
-
         }
-        gameInput.Gameplay.Enable();
+        EnableGameplay();
     }
 
+    
     private void OnDisable()
     {
+        DisableGameplay();
+    }
+
+    private void DisableGameplay()
+    {
         gameInput.Gameplay.Disable();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
+
+    private void EnableGameplay()
+    {
+        gameInput.Gameplay.Enable();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -32,7 +48,10 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions
     }
     public void OnAttack(InputAction.CallbackContext context)
     {
-        attackEvent?.Invoke();
+        if (context.phase == InputActionPhase.Performed)
+        {
+            attackEvent?.Invoke();
+        }
     }
     public void OnInteract(InputAction.CallbackContext context)
     {
@@ -40,5 +59,9 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions
         {
             interactEvent?.Invoke();
         }
+    }
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        lookEvent?.Invoke(context.ReadValue<Vector2>());
     }
 }
