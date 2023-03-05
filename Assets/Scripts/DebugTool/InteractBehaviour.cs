@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class InteractBehaviour : MonoBehaviour
 {
-    Dictionary<string, DebugPropertiesBase> properties;
-    void Start()
+    Dictionary<string, DebugPropertyBase> properties = new();
+    void Awake()
     {
-        GetDebugProperties();
+        GetDebugProperties(); 
     }
     private void GetDebugProperties()
     {
-        properties = new Dictionary<string, DebugPropertiesBase>();
-        DebugPropertiesBase[] debugs = gameObject.GetComponents<DebugPropertiesBase>();
-        foreach (DebugPropertiesBase property in debugs)
+        properties = new Dictionary<string, DebugPropertyBase>();
+        DebugPropertyBase[] debugs = gameObject.GetComponents<DebugPropertyBase>();
+        foreach (DebugPropertyBase property in debugs)
         {
             properties.Add(property.GetName(), property);
-            Debug.Log(property.GetName()); //TODO: Debug Only. Remove before commit
         }
     }
 
@@ -32,5 +31,9 @@ public class InteractBehaviour : MonoBehaviour
     public void ActivateProperty(string name)
     {
         properties[name].Activate();
+    }
+    public bool GetPropertyState(string name)
+    {
+        return properties[name].GetPropertyState();
     }
 }

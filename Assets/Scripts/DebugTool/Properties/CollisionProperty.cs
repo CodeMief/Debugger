@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DebugCollision : DebugPropertiesBase
+public class CollisionProperty : DebugPropertyBase
 {
     private Collider col;
     private void Start()
@@ -15,4 +15,9 @@ public class DebugCollision : DebugPropertiesBase
     }
 
     public override string GetName() => "Collision";
+
+    public override bool GetPropertyState()
+    {
+       return col.enabled;
+    }
 }
