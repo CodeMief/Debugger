@@ -21,6 +21,6 @@ public class ColorChangeProperty : DebugPropertyBase
 
     public override bool GetPropertyState()
     {
-       return renderer.material == default;
+       return renderer.material == defaultMaterial;
     }
 }

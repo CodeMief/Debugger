@@ -30,7 +30,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        rigidbody.MovePosition(transform.position + position * stats.MovementSpeed * Time.deltaTime);
+        Vector3 localPosition = transform.TransformDirection(position);
+        rigidbody.MovePosition(transform.position + localPosition * stats.MovementSpeed * Time.deltaTime);
     }
 
     //Event System

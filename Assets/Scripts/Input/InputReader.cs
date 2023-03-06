@@ -1,30 +1,59 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
-public class InputReader : ScriptableObject, GameInput.IGameplayActions
+public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInput.IUIActions
 {
     public event UnityAction<Vector3> moveEvent;
     public event UnityAction attackEvent;
     public event UnityAction interactEvent;
     public GameInput gameInput;
+    public event UnityAction<Vector2> lookEvent;
 
     private void OnEnable()
     {
         if (gameInput == null)
         {
             gameInput = new GameInput();
-            gameInput.Gameplay.SetCallbacks(this);
-
         }
-        gameInput.Gameplay.Enable();
+        EnableGameplay();
     }
+
 
     private void OnDisable()
     {
+        DisableGameplay();
+    }
+
+    private void DisableGameplay()
+    {
         gameInput.Gameplay.Disable();
     }
+    private void DisableUI()
+    {
+        gameInput.UI.Disable();
+    }
+
+    private void EnableGameplay()
+    {
+        gameInput.Gameplay.Enable(); 
+        gameInput.Gameplay.SetCallbacks(this);
+        DisableUI();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    private void EnableUI()
+    {
+        gameInput.UI.Enable();
+        gameInput.UI.SetCallbacks(this);
+        DisableGameplay();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
+    
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -32,13 +61,69 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions
     }
     public void OnAttack(InputAction.CallbackContext context)
     {
-        attackEvent?.Invoke();
+        if (context.phase == InputActionPhase.Performed)
+        {
+            attackEvent?.Invoke();
+        }
     }
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
             interactEvent?.Invoke();
+        }
+    }
+    public void OnLook(InputAction.CallbackContext context)
+    {
+        lookEvent?.Invoke(context.ReadValue<Vector2>());
+    }
+
+    public void OnNavigate(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnSubmit(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnCancel(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnPoint(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnClick(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnScrollWheel(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnMiddleClick(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnRightClick(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnSwitchMaps(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            if (gameInput.Gameplay.enabled)
+            {
+                Debug.Log("Gameplay off");
+                EnableUI();
+            }
+            else
+            {
+                Debug.Log("UI off");
+                EnableGameplay();
+            }
         }
     }
 }

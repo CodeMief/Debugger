@@ -6,5 +6,7 @@ using UnityEngine;
 public class StatsSO : ScriptableObject
 {
    [SerializeField] private float movementSpeed;
+   [SerializeField] private int health;
     public float MovementSpeed { get => movementSpeed; }
+    public int Health { get => health; }
 }
