@@ -34,12 +34,21 @@
                 },
                 {
                     "name": "Look",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "2826f896-9c09-4c39-bfe5-53fe4d33d8ed",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchMaps",
+                    "type": "Button",
+                    "id": "062ee74c-1969-47cc-b400-002acdfd991a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -185,6 +194,17 @@
                     "action": "Look",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "512c737e-4885-4870-9dd4-54edf98a63ac",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchMaps",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -259,6 +279,15 @@
                     "name": "RightClick",
                     "type": "PassThrough",
                     "id": "d7f43f03-497c-4b1a-afca-53cbd66acd71",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchMaps",
+                    "type": "Button",
+                    "id": "8566d929-e18c-419e-8dab-cfbf52b619d7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -549,6 +578,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Submit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "37f4d21f-a0c2-49c7-af16-7201e24c5bd2",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "SwitchMaps",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

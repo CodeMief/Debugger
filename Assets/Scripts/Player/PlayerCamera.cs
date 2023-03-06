@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class PlayerCamera : MonoBehaviour
 {
@@ -20,20 +22,30 @@ public class PlayerCamera : MonoBehaviour
     {
         AttachCameraToPlayer();
     }
+    private void OnEnable()
+    {
+        inputReader.lookEvent += Look;
+    }
+    private void OnDisable()
+    {
+        inputReader.lookEvent -= Look;
+    }
     private void Update()
     {
         RotateHorizontal();
         RotateVertical();
+        
     }
 
     private void RotateHorizontal()
     {
-        transform.Rotate(Vector3.up, dir.x * horizontalSensitivity * Time.deltaTime);
+        float angle = dir.x * horizontalSensitivity;
+        transform.Rotate(Vector3.up, angle);
     }
 
     private void RotateVertical()
     {
-        yRotation += dir.y * verticalSensitivity * Time.deltaTime;
+        yRotation += dir.y * verticalSensitivity;
         yRotation = Mathf.Clamp(yRotation, -verticalClamp, verticalClamp);
         camera.localRotation = Quaternion.AngleAxis(yRotation, GetAxis());
     }
@@ -41,15 +53,6 @@ public class PlayerCamera : MonoBehaviour
     private Vector3 GetAxis()
     {
         return invertY ? Vector3.right:Vector3.left;
-    }
-
-    void OnEnable()
-    {
-        inputReader.lookEvent += Look;
-    }
-    void OnDisable()
-    {
-        inputReader.lookEvent -= Look;
     }
 
     private void AttachCameraToPlayer()

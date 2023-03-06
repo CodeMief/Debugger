@@ -56,12 +56,21 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Look"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""2826f896-9c09-4c39-bfe5-53fe4d33d8ed"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchMaps"",
+                    ""type"": ""Button"",
+                    ""id"": ""062ee74c-1969-47cc-b400-002acdfd991a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -207,6 +216,17 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""512c737e-4885-4870-9dd4-54edf98a63ac"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchMaps"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -281,6 +301,15 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""name"": ""RightClick"",
                     ""type"": ""PassThrough"",
                     ""id"": ""d7f43f03-497c-4b1a-afca-53cbd66acd71"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchMaps"",
+                    ""type"": ""Button"",
+                    ""id"": ""8566d929-e18c-419e-8dab-cfbf52b619d7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -573,6 +602,17 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""action"": ""Submit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""37f4d21f-a0c2-49c7-af16-7201e24c5bd2"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SwitchMaps"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -613,6 +653,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_Look = m_Gameplay.FindAction("Look", throwIfNotFound: true);
+        m_Gameplay_SwitchMaps = m_Gameplay.FindAction("SwitchMaps", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -623,6 +664,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_MiddleClick = m_UI.FindAction("MiddleClick", throwIfNotFound: true);
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
+        m_UI_SwitchMaps = m_UI.FindAction("SwitchMaps", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -686,6 +728,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Attack;
     private readonly InputAction m_Gameplay_Interact;
     private readonly InputAction m_Gameplay_Look;
+    private readonly InputAction m_Gameplay_SwitchMaps;
     public struct GameplayActions
     {
         private @GameInput m_Wrapper;
@@ -694,6 +737,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputAction @Look => m_Wrapper.m_Gameplay_Look;
+        public InputAction @SwitchMaps => m_Wrapper.m_Gameplay_SwitchMaps;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -715,6 +759,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @Look.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLook;
                 @Look.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLook;
                 @Look.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnLook;
+                @SwitchMaps.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchMaps;
+                @SwitchMaps.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchMaps;
+                @SwitchMaps.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchMaps;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -731,6 +778,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @Look.started += instance.OnLook;
                 @Look.performed += instance.OnLook;
                 @Look.canceled += instance.OnLook;
+                @SwitchMaps.started += instance.OnSwitchMaps;
+                @SwitchMaps.performed += instance.OnSwitchMaps;
+                @SwitchMaps.canceled += instance.OnSwitchMaps;
             }
         }
     }
@@ -747,6 +797,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_ScrollWheel;
     private readonly InputAction m_UI_MiddleClick;
     private readonly InputAction m_UI_RightClick;
+    private readonly InputAction m_UI_SwitchMaps;
     public struct UIActions
     {
         private @GameInput m_Wrapper;
@@ -759,6 +810,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         public InputAction @ScrollWheel => m_Wrapper.m_UI_ScrollWheel;
         public InputAction @MiddleClick => m_Wrapper.m_UI_MiddleClick;
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
+        public InputAction @SwitchMaps => m_Wrapper.m_UI_SwitchMaps;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -792,6 +844,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @RightClick.started -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
                 @RightClick.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
                 @RightClick.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnRightClick;
+                @SwitchMaps.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchMaps;
+                @SwitchMaps.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchMaps;
+                @SwitchMaps.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchMaps;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -820,6 +875,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @RightClick.started += instance.OnRightClick;
                 @RightClick.performed += instance.OnRightClick;
                 @RightClick.canceled += instance.OnRightClick;
+                @SwitchMaps.started += instance.OnSwitchMaps;
+                @SwitchMaps.performed += instance.OnSwitchMaps;
+                @SwitchMaps.canceled += instance.OnSwitchMaps;
             }
         }
     }
@@ -848,6 +906,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
+        void OnSwitchMaps(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -859,5 +918,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         void OnScrollWheel(InputAction.CallbackContext context);
         void OnMiddleClick(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);
+        void OnSwitchMaps(InputAction.CallbackContext context);
     }
 }
