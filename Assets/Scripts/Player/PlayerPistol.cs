@@ -12,12 +12,12 @@ public class PlayerPistol : MonoBehaviour
     private void OnEnable()
     {
         inputReader.attackEvent += Shoot;
-        //inputReader.reloadEvent += Reload;
+        inputReader.reloadEvent += Reload;
     }
     private void OnDisable()
     {
         inputReader.attackEvent -= Shoot;
-        //inputReader.reloadEvent -= Reload;
+        inputReader.reloadEvent -= Reload;
     }
 
     private void Shoot()

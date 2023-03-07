@@ -16,4 +16,4 @@ MonoBehaviour:
   fireSpeed: 0
   maxAmmo: 30
   clipSize: 12
-  reloadSpeed: 5
+  reloadSpeed: 1.5

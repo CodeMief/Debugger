@@ -31,20 +31,20 @@ public class ToggleScript : MonoBehaviour
         reader.EnableGameplay();
     }
 
-    private void Interact()
+    private void OpenUI(InteractBehaviour interactBehaviour)
     {
         uiDoc.enabled = !uiDoc.enabled;
         reader.EnableUI();
     }
 
-    private void Shoot()
+    private void Interact()
     {
         RaycastHit hit;
         Physics.Raycast(aimPos.position, aimPos.forward, out hit, range);
         if (hit.transform == null) return;
         if (hit.transform.TryGetComponent(out InteractBehaviour interactBehaviour))
         {
-            //TODO
+            OpenUI(interactBehaviour);
         }
         Debug.Log(hit.transform.name);
     }
