@@ -8,6 +8,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions
     public event UnityAction<Vector3> moveEvent;
     public event UnityAction attackEvent;
     public event UnityAction interactEvent;
+    public event UnityAction jumpEvent;
     public GameInput gameInput;
 
     private void OnEnable()
@@ -39,6 +40,14 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions
         if (context.phase == InputActionPhase.Performed)
         {
             interactEvent?.Invoke();
+        }
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            jumpEvent?.Invoke();
         }
     }
 }
