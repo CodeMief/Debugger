@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fae6ae350505f14189903adc565ea1b, type: 3}
-  m_Name: PlayerStat
+  m_Script: {fileID: 11500000, guid: 9819754c343a0d644af904b871aa352c, type: 3}
+  m_Name: AK-47
   m_EditorClassIdentifier: 
-  movementSpeed: 5
-  jumpHeight: 6
+  damage: 100
+  fireSpeed: 0
+  maxAmmo: 1
+  clipSize: 1
+  reloadSpeed: 0

@@ -5,8 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName ="New Stat", menuName = "Stat")]
 public class StatsSO : ScriptableObject
 {
-   [SerializeField] private float movementSpeed;
-   [SerializeField] private int health;
-    public float MovementSpeed { get => movementSpeed; }
+    [SerializeField] private int health;
+    [SerializeField] private float movementSpeed;
+    [SerializeField] private float jumpHeight;
+
     public int Health { get => health; }
+    public float MovementSpeed { get => movementSpeed; }
+    public float JumpHeight { get => jumpHeight; }
 }

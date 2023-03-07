@@ -71,6 +71,15 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""ea8a1fc6-2e5a-488e-b99c-42dc94a82177"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -99,7 +108,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""WASD"",
                     ""id"": ""ee6d4a22-f0bd-43eb-88dc-7d52f7cb9d5f"",
-                    ""path"": ""3DVector"",
+                    ""path"": ""3DVector(mode=1)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -154,7 +163,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Arrow Keys"",
                     ""id"": ""a0a8a891-6a4b-417d-b0d9-3e36b3e82896"",
-                    ""path"": ""3DVector"",
+                    ""path"": ""3DVector(mode=1)"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -225,6 +234,17 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""SwitchMaps"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6fab3e97-95f8-4f77-a628-f94f72a76288"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -685,6 +705,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         m_Gameplay_Look = m_Gameplay.FindAction("Look", throwIfNotFound: true);
         m_Gameplay_SwitchMaps = m_Gameplay.FindAction("SwitchMaps", throwIfNotFound: true);
+        m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -761,6 +782,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Interact;
     private readonly InputAction m_Gameplay_Look;
     private readonly InputAction m_Gameplay_SwitchMaps;
+    private readonly InputAction m_Gameplay_Jump;
     public struct GameplayActions
     {
         private @GameInput m_Wrapper;
@@ -770,6 +792,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputAction @Look => m_Wrapper.m_Gameplay_Look;
         public InputAction @SwitchMaps => m_Wrapper.m_Gameplay_SwitchMaps;
+        public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -794,6 +817,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @SwitchMaps.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchMaps;
                 @SwitchMaps.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchMaps;
                 @SwitchMaps.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSwitchMaps;
+                @Jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -813,6 +839,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @SwitchMaps.started += instance.OnSwitchMaps;
                 @SwitchMaps.performed += instance.OnSwitchMaps;
                 @SwitchMaps.canceled += instance.OnSwitchMaps;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
         }
     }
@@ -947,6 +976,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         void OnInteract(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnSwitchMaps(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

@@ -9,7 +9,11 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     public event UnityAction<Vector3> moveEvent;
     public event UnityAction attackEvent;
     public event UnityAction interactEvent;
+<<<<<<< HEAD
     public event UnityAction exitDebuggerToolEvent;
+=======
+    public event UnityAction jumpEvent;
+>>>>>>> dev
     public GameInput gameInput;
     public event UnityAction<Vector2> lookEvent;
 
@@ -72,6 +76,14 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
         if (context.phase == InputActionPhase.Performed)
         {
             interactEvent?.Invoke();
+        }
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            jumpEvent?.Invoke();
         }
     }
     public void OnLook(InputAction.CallbackContext context)
