@@ -292,6 +292,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ExitDebuggerTool",
+                    "type": "Button",
+                    "id": "d1ade198-1387-4cb0-a53d-5cde9eec4f98",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -589,6 +598,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "SwitchMaps",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6d16465a-e30a-466f-aa87-4d5e73f73c2e",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ExitDebuggerTool",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4800b249-5788-4573-8501-e78a7d36ab8a",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "ExitDebuggerTool",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

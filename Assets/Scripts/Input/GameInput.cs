@@ -314,6 +314,15 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ExitDebuggerTool"",
+                    ""type"": ""Button"",
+                    ""id"": ""d1ade198-1387-4cb0-a53d-5cde9eec4f98"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -613,6 +622,28 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""action"": ""SwitchMaps"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d16465a-e30a-466f-aa87-4d5e73f73c2e"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ExitDebuggerTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4800b249-5788-4573-8501-e78a7d36ab8a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""ExitDebuggerTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -665,6 +696,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         m_UI_MiddleClick = m_UI.FindAction("MiddleClick", throwIfNotFound: true);
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_SwitchMaps = m_UI.FindAction("SwitchMaps", throwIfNotFound: true);
+        m_UI_ExitDebuggerTool = m_UI.FindAction("ExitDebuggerTool", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -798,6 +830,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_MiddleClick;
     private readonly InputAction m_UI_RightClick;
     private readonly InputAction m_UI_SwitchMaps;
+    private readonly InputAction m_UI_ExitDebuggerTool;
     public struct UIActions
     {
         private @GameInput m_Wrapper;
@@ -811,6 +844,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         public InputAction @MiddleClick => m_Wrapper.m_UI_MiddleClick;
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
         public InputAction @SwitchMaps => m_Wrapper.m_UI_SwitchMaps;
+        public InputAction @ExitDebuggerTool => m_Wrapper.m_UI_ExitDebuggerTool;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -847,6 +881,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @SwitchMaps.started -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchMaps;
                 @SwitchMaps.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchMaps;
                 @SwitchMaps.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnSwitchMaps;
+                @ExitDebuggerTool.started -= m_Wrapper.m_UIActionsCallbackInterface.OnExitDebuggerTool;
+                @ExitDebuggerTool.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnExitDebuggerTool;
+                @ExitDebuggerTool.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnExitDebuggerTool;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -878,6 +915,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @SwitchMaps.started += instance.OnSwitchMaps;
                 @SwitchMaps.performed += instance.OnSwitchMaps;
                 @SwitchMaps.canceled += instance.OnSwitchMaps;
+                @ExitDebuggerTool.started += instance.OnExitDebuggerTool;
+                @ExitDebuggerTool.performed += instance.OnExitDebuggerTool;
+                @ExitDebuggerTool.canceled += instance.OnExitDebuggerTool;
             }
         }
     }
@@ -919,5 +959,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         void OnMiddleClick(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);
         void OnSwitchMaps(InputAction.CallbackContext context);
+        void OnExitDebuggerTool(InputAction.CallbackContext context);
     }
 }
