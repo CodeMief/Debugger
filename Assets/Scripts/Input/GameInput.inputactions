@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "ea8a1fc6-2e5a-488e-b99c-42dc94a82177",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -77,7 +86,7 @@
                 {
                     "name": "WASD",
                     "id": "ee6d4a22-f0bd-43eb-88dc-7d52f7cb9d5f",
-                    "path": "3DVector",
+                    "path": "3DVector(mode=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -132,7 +141,7 @@
                 {
                     "name": "Arrow Keys",
                     "id": "a0a8a891-6a4b-417d-b0d9-3e36b3e82896",
-                    "path": "3DVector",
+                    "path": "3DVector(mode=1)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -203,6 +212,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "SwitchMaps",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6fab3e97-95f8-4f77-a628-f94f72a76288",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
