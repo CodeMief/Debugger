@@ -1,0 +1,25 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Menus/Stylesheet.uss?fileID=7433441132597879392&amp;guid=458b9842ff162fb489f409e5b96d8426&amp;type=3#Stylesheet" />
+    <ui:VisualElement name="Background" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); visibility: visible; overflow: visible; position: absolute; left: 0; top: 0; right: 0; bottom: 0; flex-shrink: 0; flex-basis: 100%; background-image: url(&apos;project://database/Assets/Menus/Assets/MainMenuBg.jpg?fileID=2800000&amp;guid=e970097c8326bf04586b89682d1fbe33&amp;type=3#MainMenuBg&apos;);" />
+    <ui:VisualElement name="Container" style="flex-grow: 0; background-color: rgba(255, 255, 255, 0); padding-right: 5%; padding-left: 5%; padding-top: 20%; padding-bottom: 10%; justify-content: center; background-image: none; visibility: visible; flex-shrink: 0; flex-basis: 100%;">
+        <ui:VisualElement name="Section" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; flex-basis: 50%; justify-content: space-between;">
+            <ui:VisualElement name="Row" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-basis: 25%; align-items: flex-start; align-self: auto; justify-content: center; padding-bottom: 0; flex-shrink: 0; padding-left: 0; padding-right: 0; padding-top: 0;">
+                <ui:Button text="NEW GAME / START" display-tooltip-when-elided="true" name="ButtonNewGame" class="button" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Row" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-basis: 25%; align-items: flex-start; align-self: auto; justify-content: center; padding-bottom: 0; flex-shrink: 0; padding-left: 0; padding-right: 0; padding-top: 0; display: none;">
+                <ui:Button text="LOAD GAME" display-tooltip-when-elided="true" name="ButtonLoadGame" style="display: flex;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Row" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-basis: 25%; align-items: flex-start; align-self: auto; justify-content: center; padding-bottom: 0; flex-shrink: 0; padding-left: 0; padding-right: 0; padding-top: 0;">
+                <ui:Button text="OPTIONS" display-tooltip-when-elided="true" name="ButtonGameOptions" class="button" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Row" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-basis: 25%; align-items: flex-start; align-self: auto; justify-content: center; padding-bottom: 0; flex-shrink: 0; padding-left: 0; padding-right: 0; padding-top: 0;">
+                <ui:Button text="EXIT" display-tooltip-when-elided="true" name="ButtonExitToDesktop" class="button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="Section" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; flex-basis: 50%; justify-content: flex-end;">
+            <ui:VisualElement name="Row" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-basis: 25%; align-items: flex-start; align-self: auto; justify-content: center; padding-bottom: 0; flex-shrink: 0; padding-left: 0; padding-right: 0; padding-top: 0;">
+                <ui:Label tabindex="-1" text="DEBUGGER" display-tooltip-when-elided="true" name="Title" style="font-size: 30px; color: rgb(255, 255, 255); flex-basis: auto; justify-content: flex-start; -unity-font: url(&apos;project://database/Assets/Menus/Fonts/Game%20Of%20Squids.otf?fileID=12800000&amp;guid=15d5257c6ca7e3d4eb52861f2081214e&amp;type=3#Game Of Squids&apos;); -unity-font-definition: url(&apos;project://database/Assets/Menus/Fonts/Game%20Of%20Squids%20SDF%201.asset?fileID=11400000&amp;guid=480108b219d7c7b4683272ac84d33be0&amp;type=2#Game Of Squids SDF 1&apos;);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
