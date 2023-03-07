@@ -14,3 +14,15 @@
     padding-top: 0;
     padding-bottom: 0;
 }
+
+.button:hover {
+    -unity-font-style: bold;
+    font-size: 34px;
+    -unity-text-align: upper-left;
+    padding-left: 34px;
+    background-color: rgb(255, 204, 0);
+    padding-right: 34px;
+    padding-top: 0;
+    padding-bottom: 0;
+    cursor: initial;
+}
