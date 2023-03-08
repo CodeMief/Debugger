@@ -6,11 +6,8 @@ using UnityEngine;
 public class CinemachinePOVExtension : CinemachineExtension
 {
     [SerializeField] private InputReader inputReader;
-    [SerializeField] private float horizontalSensitivity = 10f;
-    [SerializeField] private float verticalSensitivity = 10f;
     [SerializeField] private float clampAngle = 85f;
-    [SerializeField] private bool invertY;
-
+    [SerializeField] PlayerSettings settings;
     private Vector3 startingRotation;
     private Vector2 dir;
 
@@ -29,14 +26,14 @@ public class CinemachinePOVExtension : CinemachineExtension
         if (stage != CinemachineCore.Stage.Aim) return;
         if (startingRotation == null) startingRotation = transform.localEulerAngles;
 
-        startingRotation.x += dir.x * verticalSensitivity * Time.deltaTime;
-        startingRotation.y += dir.y * horizontalSensitivity * Time.deltaTime;
+        startingRotation.x += dir.x * settings.VerticalSensitivity * Time.deltaTime;
+        startingRotation.y += dir.y * settings.HorizontalSensitivity * Time.deltaTime;
         startingRotation.y = Mathf.Clamp(startingRotation.y, -clampAngle, clampAngle);
         state.RawOrientation = Quaternion.Euler(GetInversionValue(), startingRotation.x, 0f);
     }
     private float GetInversionValue()
     {
-        return invertY ? startingRotation.y : -startingRotation.y;
+        return settings.InvertY ? startingRotation.y : -startingRotation.y;
     }
     private void Move(Vector2 dir)
     {

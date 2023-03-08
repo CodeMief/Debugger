@@ -31,9 +31,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-        Vector3 localPosition = transform.TransformDirection(position);
-        transform.rotation = new Quaternion(transform.rotation.x, cam.rotation.y,transform.rotation.z, transform.rotation.w);
-        rigidbody.MovePosition(transform.position + localPosition * stats.MovementSpeed * Time.deltaTime);
+        Vector3 dir = cam.forward * position.z + cam.right * position.x;
+        rigidbody.MovePosition(transform.position + dir * stats.MovementSpeed * Time.deltaTime);
     }
 
     //Event System
