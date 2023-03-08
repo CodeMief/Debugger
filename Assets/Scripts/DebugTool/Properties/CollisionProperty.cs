@@ -11,13 +11,13 @@ public class CollisionProperty : DebugPropertyBase
     }
     public override void Activate()
     {
-        col.enabled = !col.enabled;
+        col.isTrigger = !col.isTrigger;
     }
 
     public override string GetName() => "Collision";
 
     public override bool GetPropertyState()
     {
-       return col.enabled;
+       return !col.isTrigger;
     }
 }
