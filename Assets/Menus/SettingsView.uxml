@@ -1,13 +1,16 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Menus/Stylesheet.uss?fileID=7433441132597879392&amp;guid=458b9842ff162fb489f409e5b96d8426&amp;type=3#Stylesheet" />
-    <ui:VisualElement name="Background" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-image: url(&apos;project://database/Assets/Menus/Assets/MainMenuBg.jpg?fileID=2800000&amp;guid=e970097c8326bf04586b89682d1fbe33&amp;type=3#MainMenuBg&apos;); -unity-background-image-tint-color: rgb(84, 84, 84);" />
-    <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); padding-left: 5%; padding-right: 5%; padding-top: 10%; padding-bottom: 10%;">
-        <ui:Label tabindex="-1" text="SETTINGS" display-tooltip-when-elided="true" name="SettingsTitleLabel" class="h1" />
-        <ui:VisualElement name="col" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-basis: 50%; align-items: flex-start; align-self: flex-start; width: 50%;">
-            <ui:Button text="Go Back" display-tooltip-when-elided="true" name="ReturnButton" class="button" />
-            <ui:VisualElement name="spacer" class="spacer" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-shrink: 0; height: 20%;" />
-            <ui:Toggle label="Full Screen " name="FullScreenToggle" class="h2" style="flex-shrink: 0; flex-grow: 0; width: auto;" />
-            <ui:DropdownField label="Display Resolution " index="-1" choices="System.Collections.Generic.List`1[System.String]" name="ResolutionDropdown" class="h2" style="flex-shrink: 0; flex-grow: 0; width: auto;" />
+    <ui:VisualElement name="Background" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-image: url(&apos;project://database/Assets/Menus/Assets/MainMenuBg.jpg?fileID=2800000&amp;guid=e970097c8326bf04586b89682d1fbe33&amp;type=3#MainMenuBg&apos;); -unity-background-image-tint-color: rgb(128, 95, 97);" />
+    <ui:VisualElement name="Container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); padding-left: 5%; padding-right: 5%; padding-top: 10%; padding-bottom: 20%; align-items: flex-start; justify-content: center;">
+        <ui:Label tabindex="-1" text="SETTINGS" display-tooltip-when-elided="true" name="SettingsTitleLabel" class="h1 title" style="align-items: flex-start;" />
+        <ui:VisualElement name="col" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-basis: 50%; align-items: flex-start; align-self: flex-start; width: 50%; justify-content: space-around;">
+            <ui:VisualElement style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); width: 100%; align-items: flex-start; height: 30%; -unity-text-align: upper-left;">
+                <ui:Button text="Go Back" display-tooltip-when-elided="true" name="ReturnButton" class="button" style="padding-top: 10px; width: auto;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="container" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); justify-content: center; align-items: stretch; -unity-text-align: upper-left;">
+                <ui:Toggle label="Full Screen " name="FullScreenToggle" class="h2" style="flex-shrink: 0; flex-grow: 0; width: 177px;" />
+                <ui:DropdownField label="Display Resolution " index="-1" choices="System.Collections.Generic.List`1[System.String]" name="ResolutionDropdown" class="h2" style="flex-shrink: 0; flex-grow: 0; width: 425px;" />
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

@@ -9,7 +9,7 @@ public class StartViewPresenter : MonoBehaviour
     private VisualElement _SettingsView;
     private VisualElement _StartView;
 
-    void Start()
+    void Awake()
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
         _StartView = root.Q("MainMenu");
@@ -18,8 +18,26 @@ public class StartViewPresenter : MonoBehaviour
         SetupStartMenu();
         SetupSettingsMenu();
     }
+
+
+    // ----- While playing the game ------
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            _StartView.visible = !_StartView.visible;
+        }
+    }
+
+
+
+
+
+    // ----- Start Of The Game -----
     private void SetupStartMenu()
     {
+
+        // giving the MainMenu presenter script the location of the StartView UXML file root location.
         MainMenuPresenter menuPresenter = new MainMenuPresenter(_StartView);
         menuPresenter.OpenSettings = () => ToggleSettingsMenu(true);
 
@@ -35,7 +53,8 @@ public class StartViewPresenter : MonoBehaviour
     {
         _StartView.Display(!enable);
         _SettingsView.Display(enable);
-        Debug.Log(enable);
 
     }
+
+
 }

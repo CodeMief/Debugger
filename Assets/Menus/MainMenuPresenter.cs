@@ -11,7 +11,11 @@ public class MainMenuPresenter
     public Button buttonStartGame;
     public Button buttonExitToDesktop;
     public Button buttonGameSettings;
-    
+
+
+
+    // Define what the starting level is by looking in the build settings what the index number is OR in this case using a string to write down the scene name.
+    [SerializeField] string startingLevel = "StartingLevel";
 
 
     // Start is called before the first frame update
@@ -27,16 +31,19 @@ public class MainMenuPresenter
 
     private void AddLogsToButtons()
     {
-        buttonStartGame.clicked += () => Debug.Log("You are loading the game.");
-        buttonExitToDesktop.clicked += () => Debug.Log("You are leaving the game.");
+        buttonStartGame.clicked += () =>
+        {
+            Debug.Log("You are starting the game.");
+            SceneManager.LoadScene(startingLevel);
+        };
+        buttonExitToDesktop.clicked += () =>
+        {
+            Application.Quit();
+            Debug.Log("You are leaving the game.");
+        };
         buttonGameSettings.clicked += () => Debug.Log("You are opening the settings of the game.");
     }
 
-    // - - - - - Usable functionalities - - - - - -
 
-    // [SerializeField] int startingLevel = 2;
-    // SceneManager.LoadScene(startingLevel);
-
-    // Application.Quit();
 
 }
