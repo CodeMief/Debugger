@@ -10,7 +10,7 @@
                 <ui:Button text="LOAD GAME" display-tooltip-when-elided="true" name="ButtonLoadGame" style="display: flex;" />
             </ui:VisualElement>
             <ui:VisualElement name="Row" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-basis: 25%; align-items: flex-start; align-self: auto; justify-content: center; padding-bottom: 0; flex-shrink: 0; padding-left: 0; padding-right: 0; padding-top: 0;">
-                <ui:Button text="OPTIONS" display-tooltip-when-elided="true" name="ButtonGameOptions" class="button" />
+                <ui:Button text="SETTINGS" display-tooltip-when-elided="true" name="ButtonGameSettings" class="button" />
             </ui:VisualElement>
             <ui:VisualElement name="Row" style="flex-grow: 0; background-color: rgba(0, 0, 0, 0); flex-basis: 25%; align-items: flex-start; align-self: auto; justify-content: center; padding-bottom: 0; flex-shrink: 0; padding-left: 0; padding-right: 0; padding-top: 0;">
                 <ui:Button text="EXIT" display-tooltip-when-elided="true" name="ButtonExitToDesktop" class="button" />

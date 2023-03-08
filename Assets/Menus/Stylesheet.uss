@@ -26,3 +26,25 @@
     padding-bottom: 0;
     cursor: initial;
 }
+
+.h2 {
+    font-size: 30px;
+    color: rgb(202, 202, 202);
+}
+
+.h1 {
+    -unity-font-style: bold;
+    font-size: 40px;
+    -unity-font: url('project://database/Assets/Menus/Fonts/Game%20Of%20Squids.otf?fileID=12800000&guid=15d5257c6ca7e3d4eb52861f2081214e&type=3#Game Of Squids');
+    -unity-font-definition: url('project://database/Assets/Menus/Fonts/Game%20Of%20Squids%20SDF%201.asset?fileID=11400000&guid=480108b219d7c7b4683272ac84d33be0&type=2#Game Of Squids SDF 1');
+    color: rgb(255, 255, 255);
+}
+
+.toggleButton {
+}
+
+.dropdownButton {
+}
+
+.spacer {
+}
