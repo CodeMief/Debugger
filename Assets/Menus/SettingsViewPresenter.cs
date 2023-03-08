@@ -16,17 +16,12 @@ public class SettingsViewPresenter
         "1280x720"
     };
     
-    
-    
     // Allows you to add functionality to the return button from outside this script.
     public Action BackAction { set => returnButton.clicked += value; }
 
     public Button returnButton;
     public Toggle fullScreenToggle;
     public DropdownField resolutionDropdown;
-
-
-
 
     // Start is called before the first frame update
     public SettingsViewPresenter(VisualElement root)
@@ -36,9 +31,14 @@ public class SettingsViewPresenter
         resolutionDropdown = root.Q<DropdownField>("ResolutionDropdown");
 
 
+        // By default full screen mode when game is running.
+        fullScreenToggle.value = true;
         // After clicking and releasing the toggle, execute the setfullscreen function, with the true or false value from the fullscreen toggle.
-        // Trickledown Trickledown is good practise when you have a complex UI hierarchy and you want from parent to children to execute.
-        fullScreenToggle.RegisterCallback<MouseUpEvent>((evt) => { SetFullScreen(fullScreenToggle.value); }, TrickleDown.TrickleDown);
+        fullScreenToggle.RegisterValueChangedCallback((evt) => { SetFullScreen(evt.newValue); });
+    
+        
+        
+        
         resolutionDropdown.choices = _resolutions;
 
         // Change event gives you both the new as the old value
@@ -47,11 +47,7 @@ public class SettingsViewPresenter
         // Default resolution
         int defaultIndex = _resolutions.IndexOf("1920x1080");
         resolutionDropdown.index = defaultIndex;
-
-
-        AddLogsToButtons();
     }
-
     private void SetResolution(string newResolution)
     {
 
@@ -64,22 +60,12 @@ public class SettingsViewPresenter
             int.Parse(resolutionArray[0]), int.Parse(resolutionArray[1])
         };
 
-
         // Sets the resolution to the array values or checks if fullscreen is enabled.
         Screen.SetResolution(valuesIntArray[0], valuesIntArray[1], fullScreenToggle.value);
-
-
-
     }
-
     private void SetFullScreen(bool enabled)
     {
+        Debug.Log("YEHHH BOIIII");
         Screen.fullScreen = enabled;
-    }
-
-
-    private void AddLogsToButtons()
-    {
-        returnButton.clicked += () => Debug.Log("Returning to main menu.");
     }
 }

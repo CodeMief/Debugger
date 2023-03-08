@@ -17,20 +17,8 @@ public class StartViewPresenter : MonoBehaviour
 
         SetupStartMenu();
         SetupSettingsMenu();
+
     }
-
-
-    // ----- While playing the game ------
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            _StartView.visible = !_StartView.visible;
-        }
-    }
-
-
-
 
 
     // ----- Start Of The Game -----

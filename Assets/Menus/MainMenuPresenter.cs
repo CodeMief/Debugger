@@ -26,22 +26,19 @@ public class MainMenuPresenter
         buttonGameSettings = root.Q<Button>("ButtonGameSettings");
 
 
-        AddLogsToButtons();
+        MainMenuOptions();
     }
 
-    private void AddLogsToButtons()
+    private void MainMenuOptions()
     {
         buttonStartGame.clicked += () =>
         {
-            Debug.Log("You are starting the game.");
             SceneManager.LoadScene(startingLevel);
         };
         buttonExitToDesktop.clicked += () =>
         {
             Application.Quit();
-            Debug.Log("You are leaving the game.");
         };
-        buttonGameSettings.clicked += () => Debug.Log("You are opening the settings of the game.");
     }
 
 
