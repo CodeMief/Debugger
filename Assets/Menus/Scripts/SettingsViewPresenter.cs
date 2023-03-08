@@ -22,6 +22,11 @@ public class SettingsViewPresenter
     public Button returnButton;
     public Toggle fullScreenToggle;
     public DropdownField resolutionDropdown;
+    private int defaultResolutionIndex;
+
+
+
+
 
     // Start is called before the first frame update
     public SettingsViewPresenter(VisualElement root)
@@ -38,15 +43,15 @@ public class SettingsViewPresenter
     
         
         
-        
+        // - - - - - Dropdown Resolution Menu - - - - - - -
         resolutionDropdown.choices = _resolutions;
 
         // Change event gives you both the new as the old value
         resolutionDropdown.RegisterValueChangedCallback((value) => SetResolution(value.newValue));
 
         // Default resolution
-        int defaultIndex = _resolutions.IndexOf("1920x1080");
-        resolutionDropdown.index = defaultIndex;
+        defaultResolutionIndex = _resolutions.IndexOf("1920x1080");
+        resolutionDropdown.index = defaultResolutionIndex;
     }
     private void SetResolution(string newResolution)
     {
@@ -65,7 +70,12 @@ public class SettingsViewPresenter
     }
     private void SetFullScreen(bool enabled)
     {
-        Debug.Log("YEHHH BOIIII");
         Screen.fullScreen = enabled;
+
+        // Set to default resolution if full screen enabled
+        if(enabled)
+        {
+            resolutionDropdown.index = defaultResolutionIndex;
+        }
     }
 }
