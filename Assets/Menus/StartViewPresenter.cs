@@ -1,5 +1,6 @@
-using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UIElements;
 
 public class StartViewPresenter : MonoBehaviour
@@ -11,7 +12,7 @@ public class StartViewPresenter : MonoBehaviour
     void Start()
     {
         VisualElement root = GetComponent<UIDocument>().rootVisualElement;
-        _StartView = root.Q("StartView");
+        _StartView = root.Q("MainMenu");
         _SettingsView = root.Q("SettingsView");
 
         SetupStartMenu();
@@ -29,9 +30,12 @@ public class StartViewPresenter : MonoBehaviour
         SettingsViewPresenter settingsPresenter = new SettingsViewPresenter(_SettingsView);
         settingsPresenter.BackAction = () => ToggleSettingsMenu(false);
     }
+
     private void ToggleSettingsMenu(bool enable)
     {
-        _StartView.Display(true);
-        _SettingsView.Display(false);
+        _StartView.Display(!enable);
+        _SettingsView.Display(enable);
+        Debug.Log(enable);
+
     }
 }

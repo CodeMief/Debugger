@@ -1,23 +1,27 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
-public class SettingsViewPresenter : MonoBehaviour
+public class SettingsViewPresenter
 {
+    // Allows you to add functionality to the return button from outside this script.
+    public Action BackAction { set => returnButton.clicked += value; }
+
     public Button returnButton;
     public Button fullScreenToggle;
     public Button resolutionDropdown;
-    public Action BackAction { set => returnButton.clicked += value; }
+
+
 
 
     // Start is called before the first frame update
-    void Awake()
+    public SettingsViewPresenter(VisualElement root)
     {
-        VisualElement root = GetComponent<UIDocument>().rootVisualElement;
         returnButton = root.Q<Button>("ReturnButton");
-        fullScreenToggle = root.Q<Button>("FullScreenToggle");
-        resolutionDropdown = root.Q<Button>("ResolutionDropdown");
+/*        fullScreenToggle = root.Q<Button>("FullScreenToggle");
+        resolutionDropdown = root.Q<Button>("ResolutionDropdown");*/
 
         AddLogsToButtons();
     }
@@ -25,7 +29,7 @@ public class SettingsViewPresenter : MonoBehaviour
     private void AddLogsToButtons()
     {
         returnButton.clicked += () => Debug.Log("Returning to main menu.");
-        fullScreenToggle.clicked += () => Debug.Log("You are toggling full screen mode.");
-        resolutionDropdown.clicked += () => Debug.Log("You are opening the resolution settings of the game.");
+/*        fullScreenToggle.clicked += () => Debug.Log("You are toggling full screen mode.");
+        resolutionDropdown.clicked += () => Debug.Log("You are opening the resolution settings of the game.");*/
     }
 }

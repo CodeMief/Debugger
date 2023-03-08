@@ -1,5 +1,5 @@
 .button {
-    font-size: 32px;
+    font-size: 20px;
     display: flex;
     -unity-background-image-tint-color: rgba(255, 255, 255, 0);
     background-color: rgba(0, 0, 0, 0);
@@ -16,8 +16,8 @@
 }
 
 .button:hover {
-    -unity-font-style: bold;
-    font-size: 34px;
+    -unity-font-style: normal;
+    font-size: 20px;
     -unity-text-align: upper-left;
     padding-left: 34px;
     background-color: rgb(255, 204, 0);
@@ -28,7 +28,7 @@
 }
 
 .h2 {
-    font-size: 30px;
+    font-size: 18px;
     color: rgb(202, 202, 202);
 }
 
@@ -47,4 +47,21 @@
 }
 
 .spacer {
+}
+
+.returnButton {
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
+.returnButton:hover {
+    -unity-font-style: bold;
+    background-color: rgb(255, 195, 0);
+    padding-left: 34px;
+    padding-right: 34px;
 }
