@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private StatsSO stats;
     private Vector3 position = new Vector3();
     private new Rigidbody rigidbody;
+    private Animator animatior;
 
     void OnEnable()
     {
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        animatior = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -38,5 +40,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnMove(Vector3 value)
     {
         position = value;
+        animatior.SetBool("isMoving", Vector3.zero != value);
     }
 }
