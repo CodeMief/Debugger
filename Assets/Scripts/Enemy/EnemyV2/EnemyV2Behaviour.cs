@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyV1Behavior : MonoBehaviour
+public class EnemyV2Behaviour : MonoBehaviour
 {
     [SerializeField] Transform target;
     [SerializeField] private StatsSO stats;
     NavMeshAgent agent;
     float TargetDistance = Mathf.Infinity;
 
-    [SerializeField]public float radius;
+    [SerializeField] public float radius;
     [Range(0, 360)]
-    [SerializeField]public float angle;
+    [SerializeField] public float angle;
 
     public GameObject playerRef;
 
@@ -22,10 +22,14 @@ public class EnemyV1Behavior : MonoBehaviour
 
     public bool canSeePlayer;
     public bool isProvoked = false;
+    public bool canJump = true;
+
+    private new Rigidbody rigidbody;
 
     private void Start()
     {
-        agent= GetComponent<NavMeshAgent>();
+        rigidbody = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
         agent.stoppingDistance = 2;
         agent.speed = stats.MovementSpeed;
         playerRef = GameObject.FindGameObjectWithTag("Player");
@@ -46,7 +50,7 @@ public class EnemyV1Behavior : MonoBehaviour
         transform.LookAt(target.position);
         if (TargetDistance > agent.stoppingDistance)
         {
-            
+
             ChaseTarget();
         }
 
