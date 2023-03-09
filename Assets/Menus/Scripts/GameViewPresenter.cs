@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
+using System;
 
 public class GameViewPresenter : MonoBehaviour
 {
@@ -22,28 +23,33 @@ public class GameViewPresenter : MonoBehaviour
         _EscapeMenuUI = _EscapeMenu.GetComponent<UIDocument>();
 
 
+        SetupEscapeMenu();
         
-        //SetupEscapeMenu();
-        SetupEscapeSettingsMenu();
+        
+        //SetupEscapeSettingsMenu();
 
         DontDestroyOnLoad(_EscapeMenu);
 
     }
     private void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape))
         {
-            _EscapeMenuUI.enabled = !_EscapeMenuUI.enabled;
+            ToggleEscapeMenu();
         }
     }
 
+    private void ToggleEscapeMenu(bool enable)
+    {
+
+    }
 
     // ----- Start Of The Game -----
     private void SetupEscapeMenu()
     {
 
         // giving the MainMenu presenter script the location of the StartView UXML file root location.
-
+        EscapeMenuPresenter escapeMenuPresenter = new EscapeMenuPresenter(_GameView);
         // MainMenuPresenter menuPresenter = new MainMenuPresenter(_GameView);
         // menuPresenter.OpenSettings = () => ToggleSettingsMenu(true);
 

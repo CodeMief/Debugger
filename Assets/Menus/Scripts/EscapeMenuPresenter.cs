@@ -3,37 +3,51 @@ using System.Collections.Generic;
 using UnityEngine.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class EscapeMenuPresenter
 {
     // - - - - UI Elements - - - -
-    public Button _ButtonResume;
-    public Button _ButtonSettings;
-    public Button _ButtonExitToMainMenu;
+    public Button buttonResume;
+    public Button buttonSettings;
+    public Button buttonExitToMainMenu;
 
-    private GameObject _EscapeMenu;
-    public UIDocument _EscapeMenuUI;
+    private GameObject escapeMenu;
+    public UIDocument escapeMenuUI;
+
+
+ 
+
 
     // Initialize UI Elements
     public EscapeMenuPresenter (VisualElement root)
     {
-        _ButtonResume = root.Q<Button>("ButtonResumeGame");
-        _ButtonSettings = root.Q<Button>("ButtonGameSettings");
-        _ButtonExitToMainMenu = root.Q<Button>("ButtonExitToMainMenu");
+        escapeMenu = GameObject.Find("Escape Menu");
+        escapeMenuUI = escapeMenu.GetComponent<UIDocument>();
 
-        _EscapeMenu = GameObject.Find("Escape Menu");
-        _EscapeMenuUI = _EscapeMenu.GetComponent<UIDocument>();
-        
-        EscapeMenuOptions();
 
+        buttonResume = root.Q<Button>("ButtonResumeGame");
+        buttonSettings = root.Q<Button>("ButtonGameSettings");
+        buttonExitToMainMenu = root.Q<Button>("ButtonExitToMainMenu");
+
+
+
+        buttonResume.clicked += OnResumeButtonClicked;
+        buttonExitToMainMenu.clicked += ExitToMainMenu;
     }
 
-    private void EscapeMenuOptions()
+    private void OnResumeButtonClicked ()
     {
-        _ButtonResume.clicked += () =>
-        {
+   
+            Debug.Log("Resuming gameplay.");
+            escapeMenuUI.enabled = false;
 
-        };
+    }
+=
+    private void ExitToMainMenu()
+    {
+        Debug.Log("exiting to main menu.");
+
     }
     // Resume game 
 
