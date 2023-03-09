@@ -8,29 +8,7 @@ public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
     public TMPro.TMP_Dropdown resolutionDropdown;
-    Resolution[] resolutions;
-
-    void Start()
-    {
-
-        resolutions = Screen.resolutions;
-
-        resolutionDropdown.ClearOptions();
-
-        List<string> options = new List<string>();  
-        for (int i = 0; i < resolutions.Length; i++)
-        {
-            string option = resolutions[i].width + "x" + resolutions[i].height;
-            options.Add(option);
-        }
-
-        resolutionDropdown.AddOptions(options);
-
-
-
-    }
-
-
+    [SerializeField] PlayerSettings ps;
 
     public void FullscreenToggle(bool isFullscreen)
     {
@@ -41,8 +19,17 @@ public class SettingsMenu : MonoBehaviour
     {
         audioMixer.SetFloat("Volume", volume);
     }
-    public void SetQuality(int qualityIndex)
+    public void SetHorizontal(float horizontal)
     {
-        QualitySettings.SetQualityLevel(qualityIndex);
+        ps.SetHorizontal(horizontal);
     }
+    public void SetVertical(float vertical)
+    {
+        ps.SetVertical(vertical);
+    }
+    public void InvertY(bool value)
+    {
+        ps.SetInvertY(value);
+    }
+
 }
