@@ -9,7 +9,7 @@ public class DebuggerTool : MonoBehaviour
     [SerializeField] private Transform aimPos;
     [SerializeField] private InputReader reader;
     [SerializeField] private float range = 100f;
-    [SerializeField] private string elementContainerName;
+    private string elementContainerName = "Elements";
     VisualElement elementContainer;
     [SerializeField] int spacingVal;
 
