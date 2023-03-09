@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fae6ae350505f14189903adc565ea1b, type: 3}
   m_Name: SoldierBot V1
   m_EditorClassIdentifier: 
-  movementSpeed: 5
   health: 15
+  movementSpeed: 6
+  jumpHeight: 0
+  stoppingDistance: 8
