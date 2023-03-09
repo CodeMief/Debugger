@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 46511d16a2204ed43bb3d5ad9bf7edca
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - interactBehaviour: {instanceID: 0}
+  - togglePrefab: {fileID: 3929413646655128161, guid: 144f9f33654af99448f805343bda057c,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
