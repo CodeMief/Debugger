@@ -1,30 +1,32 @@
 using UnityEngine;
 
+[RequireComponent(typeof(GunBehaviour))]
 public class PlayerPistol : MonoBehaviour
 {
-    [SerializeField] private int pistolDamage = 5;
     [SerializeField] private InputReader inputReader = default;
-    [SerializeField] private Transform aimPos;
-    [SerializeField] private float range = 100f;
-
+    private GunBehaviour gunBehaviour;
+    private void Start()
+    {
+        gunBehaviour = GetComponent<GunBehaviour>();
+    }
     private void OnEnable()
     {
         inputReader.attackEvent += Shoot;
+        inputReader.reloadEvent += Reload;
     }
     private void OnDisable()
     {
         inputReader.attackEvent -= Shoot;
+        inputReader.reloadEvent -= Reload;
     }
 
     private void Shoot()
     {
-        RaycastHit hit;
-        Physics.Raycast(aimPos.position, aimPos.forward,out hit, range);
-        if (hit.transform == null) return;
-        if(hit.transform.TryGetComponent(out HealthBehaviour healthBehaviour))
-        {
-            healthBehaviour.TakeDamage(pistolDamage);
-        }
-        Debug.Log(hit.transform.name);
+        gunBehaviour.Shoot();
     }
+    private void Reload()
+    {
+        gunBehaviour.Reload();
+    }
+
 }
