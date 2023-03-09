@@ -20,7 +20,7 @@ public class PlayerCamera : MonoBehaviour
     public float VerticalSensitivity { get { return verticalSensitivity; } set { verticalSensitivity = value; } }
     private void Start()
     {
-        AttachCameraToPlayer();
+        //AttachCameraToPlayer();
     }
     private void OnEnable()
     {
@@ -47,7 +47,7 @@ public class PlayerCamera : MonoBehaviour
     {
         yRotation += dir.y * verticalSensitivity;
         yRotation = Mathf.Clamp(yRotation, -verticalClamp, verticalClamp);
-        camera.localRotation = Quaternion.AngleAxis(yRotation, GetAxis());
+        //camera.localRotation = Quaternion.AngleAxis(yRotation, GetAxis());
     }
 
     private Vector3 GetAxis()
@@ -55,14 +55,14 @@ public class PlayerCamera : MonoBehaviour
         return invertY ? Vector3.right:Vector3.left;
     }
 
-    private void AttachCameraToPlayer()
-    {
-        Camera cam = Camera.main;
-        cam.transform.parent = transform;
-        ResetCameraTransform(cam);
+    // private void AttachCameraToPlayer()
+    // {
+    //     Camera cam = Camera.main;
+    //     cam.transform.parent = transform;
+    //     ResetCameraTransform(cam);
 
-        camera = cam.transform;
-    }
+    //     camera = cam.transform;
+    // }
 
     private void ResetCameraTransform(Camera cam)
     {
