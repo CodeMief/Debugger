@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -9,6 +10,17 @@ public class SettingsMenu : MonoBehaviour
     public AudioMixer audioMixer;
     public TMPro.TMP_Dropdown resolutionDropdown;
     [SerializeField] PlayerSettings ps;
+    private void ConvertToResolution(string text, bool isFullScreen)
+    {
+        string[] resolutions = text.Split("x");
+        Screen.SetResolution(int.Parse(resolutions[0].Trim()), int.Parse(resolutions[1].Trim()), isFullScreen);
+    }
+    public void ToggleResolution(int arr)
+    {
+        string text = resolutionDropdown.options[arr].text;
+        ConvertToResolution(text, Screen.fullScreen);
+    }
+
 
     public void FullscreenToggle(bool isFullscreen)
     {
