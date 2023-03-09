@@ -1,6 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="EscapeMenu" src="project://database/Assets/Menus/Escape%20Menu/EscapeMenu.uxml?fileID=9197481963319205126&amp;guid=4a97c5480cebe1d4191ba03f6afd1fa2&amp;type=3#EscapeMenu" />
-    <ui:Template name="EscapeSettingsView" src="project://database/Assets/Menus/Escape%20Menu/EscapeSettingsView.uxml?fileID=9197481963319205126&amp;guid=e0c8f2246dca35144bd53e3c9ce52056&amp;type=3#EscapeSettingsView" />
-    <ui:Instance template="EscapeMenu" name="EscapeMenu" style="flex-grow: 1;" />
-    <ui:Instance template="EscapeSettingsView" name="EscapeSettingsView" style="display: none; flex-grow: 1;" />
-</ui:UXML>
