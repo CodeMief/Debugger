@@ -9,6 +9,8 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     public event UnityAction<Vector3> moveEvent;
     public event UnityAction attackEvent;
     public event UnityAction interactEvent;
+    public event UnityAction reloadEvent;
+    public event UnityAction exitDebuggerToolEvent;
     public event UnityAction jumpEvent;
     public GameInput gameInput;
     public event UnityAction<Vector2> lookEvent;
@@ -37,7 +39,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
         gameInput.UI.Disable();
     }
 
-    private void EnableGameplay()
+    public void EnableGameplay()
     {
         gameInput.Gameplay.Enable(); 
         gameInput.Gameplay.SetCallbacks(this);
@@ -46,7 +48,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
         Cursor.visible = false;
     }
 
-    private void EnableUI()
+    public void EnableUI()
     {
         gameInput.UI.Enable();
         gameInput.UI.SetCallbacks(this);
@@ -133,6 +135,22 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
                 Debug.Log("UI off");
                 EnableGameplay();
             }
+        }
+    }
+
+    public void OnExitDebuggerTool(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            exitDebuggerToolEvent?.Invoke();
+        }
+    }
+
+    public void OnReload(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            reloadEvent?.Invoke();
         }
     }
 }
