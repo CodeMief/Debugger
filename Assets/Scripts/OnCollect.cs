@@ -6,6 +6,7 @@ public class OnCollect : MonoBehaviour
 {
     [SerializeField] InputReader inputReader = default;
     [SerializeField] GameObject uiDoc;
+    [SerializeField] GameObject invisWall;
 
     [SerializeField] Transform aimPos;
     // Start is called before the first frame update
@@ -38,6 +39,7 @@ public class OnCollect : MonoBehaviour
         if (hit.transform.tag == "DebugDisplay")
         {
             uiDoc.SetActive(true);
+            invisWall.SetActive(false);
             Destroy(hit.transform.gameObject);
         }
     }
