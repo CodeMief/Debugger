@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
+
 public class PauseMenu : MonoBehaviour
 {
     public static bool _Paused = false;
     public GameObject _PauseMenuCanvas;
     public string _MainMenuScene = "MainMenu";
+
+
     void Start()
     {
         Time.timeScale = 1.0f;
@@ -50,4 +55,8 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Testing main menu button.");
 
     }
-}
+
+    
+
+
+} 

@@ -21,10 +21,10 @@ MonoBehaviour:
     m_Value: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.3
+    m_Value: 0.89
   clamp:
     m_OverrideState: 1
-    m_Value: 0.08
+    m_Value: 0.1429
 --- !u!114 &-3733488013178491634
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -40,7 +40,7 @@ MonoBehaviour:
   active: 1
   temperature:
     m_OverrideState: 1
-    m_Value: 5
+    m_Value: 3.5
   tint:
     m_OverrideState: 0
     m_Value: -0.8

@@ -2,23 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+public class EnemyHealth : HealthBehaviour
 {
-    [SerializeField] private StatsSO stats;
-    private int health;
 
     private void Start()
     {
         health = stats.Health;
     }
 
-    public void TakeDamage(int damage)
+    public override void TakeDamage(int damage)
     {
         BroadcastMessage("OnDamageTake");
-        health -= damage;
-        if (health <= 0)
-        {
-            Destroy(gameObject);
-        }
+        base.TakeDamage(damage);
     }
 }

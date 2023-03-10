@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Menus/Fonts/Poppins-Regular SDF 1 - Variant.asset.meta
+guid: bf7ea10bccfd07744b81ad44bfb8fee8
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+========
 guid: c2dad2e34d149c845b5c5a7e389f6a01
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
+>>>>>>>> dev:Assets/Scenes/Level01/PrototypeScene/Global Volume Profile.asset.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
