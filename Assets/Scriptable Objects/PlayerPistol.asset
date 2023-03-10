@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   fireSpeed: 0
-  maxAmmo: 120
+  maxAmmo: 999999
   clipSize: 12
   reloadSpeed: 1.5

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 478624153897570805}
   - component: {fileID: 478624153897570807}
   m_Layer: 5
-  m_Name: UIDocument
+  m_Name: DebuggerTool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &478624153897570805
 MonoBehaviour:
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PanelSettings: {fileID: 11400000, guid: f70425a75b61c0a4888796e4541ed247, type: 2}
+  m_PanelSettings: {fileID: 11400000, guid: adbc61f4df699344186b10a6dd3808e5, type: 2}
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: b5cc3a75b89e9c14db76ba858e294213,
     type: 3}
@@ -65,5 +65,4 @@ MonoBehaviour:
   aimPos: {fileID: 0}
   reader: {fileID: 11400000, guid: 127ee7f45f1beec4888e3f756d18bf33, type: 2}
   range: 100
-  elementContainerName: Elements
   spacingVal: 0
