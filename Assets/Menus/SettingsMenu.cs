@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -8,28 +9,17 @@ public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
     public TMPro.TMP_Dropdown resolutionDropdown;
-    Resolution[] resolutions;
-
-    void Start()
+    [SerializeField] PlayerSettings ps;
+    private void ConvertToResolution(string text, bool isFullScreen)
     {
-
-        resolutions = Screen.resolutions;
-
-        resolutionDropdown.ClearOptions();
-
-        List<string> options = new List<string>();  
-        for (int i = 0; i < resolutions.Length; i++)
-        {
-            string option = resolutions[i].width + "x" + resolutions[i].height;
-            options.Add(option);
-        }
-
-        resolutionDropdown.AddOptions(options);
-
-
-
+        string[] resolutions = text.Split("x");
+        Screen.SetResolution(int.Parse(resolutions[0].Trim()), int.Parse(resolutions[1].Trim()), isFullScreen);
     }
-
+    public void ToggleResolution(int arr)
+    {
+        string text = resolutionDropdown.options[arr].text;
+        ConvertToResolution(text, Screen.fullScreen);
+    }
 
 
     public void FullscreenToggle(bool isFullscreen)
@@ -41,8 +31,17 @@ public class SettingsMenu : MonoBehaviour
     {
         audioMixer.SetFloat("Volume", volume);
     }
-    public void SetQuality(int qualityIndex)
+    public void SetHorizontal(float horizontal)
     {
-        QualitySettings.SetQualityLevel(qualityIndex);
+        ps.SetHorizontal(horizontal);
     }
+    public void SetVertical(float vertical)
+    {
+        ps.SetVertical(vertical);
+    }
+    public void InvertY(bool value)
+    {
+        ps.SetInvertY(value);
+    }
+
 }

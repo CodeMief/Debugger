@@ -78,7 +78,7 @@ public class DebuggerTool : MonoBehaviour
     private void CreateUI(InteractBehaviour interactBehaviour)
     {
         GetContentContainer();
-        Vector3 spacing = new Vector3(0, -10, 0);
+        Vector3 spacing = new Vector3(10, -10, 0);
 
         string[] names = interactBehaviour.GetNames();
 
@@ -102,5 +102,6 @@ public class DebuggerTool : MonoBehaviour
         toggle.RegisterValueChangedCallback(delegate { interactBehaviour.ActivateProperty(name); });
         toggle.transform.position += spacing;
         elementContainer.Add(toggle);
+        if (elementContainer.childCount == 1) toggle.Focus();
     }
 }
