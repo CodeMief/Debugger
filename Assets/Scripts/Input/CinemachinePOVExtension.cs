@@ -26,8 +26,8 @@ public class CinemachinePOVExtension : CinemachineExtension
         if (stage != CinemachineCore.Stage.Aim) return;
         if (startingRotation == null) startingRotation = transform.localEulerAngles;
 
-        startingRotation.x += dir.x * settings.VerticalSensitivity * Time.deltaTime;
-        startingRotation.y += dir.y * settings.HorizontalSensitivity * Time.deltaTime;
+        startingRotation.x += dir.x * settings.HorizontalSensitivity * Time.deltaTime;
+        startingRotation.y += dir.y * settings.VerticalSensitivity * Time.deltaTime;
         startingRotation.y = Mathf.Clamp(startingRotation.y, -clampAngle, clampAngle);
         state.RawOrientation = Quaternion.Euler(GetInversionValue(), startingRotation.x, 0f);
     }
