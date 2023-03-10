@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private StatsSO stats;
     private Vector3 position = new Vector3();
     private new Rigidbody rigidbody;
-    private Transform cam;
+    private Animator animatior;
+
     void OnEnable()
     {
         InputReader.moveEvent += OnMove;
@@ -20,28 +21,25 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        cam = Camera.main.transform;
+        animatior = GetComponent<Animator>();
         rigidbody = GetComponent<Rigidbody>();
     }
 
     void FixedUpdate()
     {
         Move();
-        Rotate();
     }
 
     private void Move()
     {
-        Vector3 dir = transform.forward * position.z + cam.right * position.x;
-        rigidbody.MovePosition(transform.position + dir * stats.MovementSpeed * Time.deltaTime);
+        Vector3 localPosition = transform.TransformDirection(position);
+        rigidbody.MovePosition(transform.position + localPosition * stats.MovementSpeed * Time.deltaTime);
     }
-    private void Rotate()
-    {
-        transform.rotation = Quaternion.AngleAxis(cam.eulerAngles.y, Vector3.up);
-    }
+
     //Event System
     private void OnMove(Vector3 value)
     {
         position = value;
+        animatior.SetBool("isMoving", Vector3.zero != value);
     }
 }
