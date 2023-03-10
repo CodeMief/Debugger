@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7291795125676809284}
   - component: {fileID: 7291795125676809291}
+  - component: {fileID: 7291795126690268133}
   m_Layer: 0
   m_Name: MenuManagar
   m_TagString: Untagged
@@ -46,3 +47,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _PauseMenuCanvas: {fileID: 0}
   _MainMenuScene: MainMenu
+  ps: {fileID: 0}
+--- !u!114 &7291795126690268133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7291795125676809285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e3a049be76b0da42a551bbcf88b97cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 0}
+  resolutionDropdown: {fileID: 0}
+  ps: {fileID: 0}
