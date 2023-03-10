@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName ="Player Setting",menuName ="Game/PlayerSettings")]
+[CreateAssetMenu(fileName = "Player Setting", menuName = "Game/PlayerSettings")]
 public class PlayerSettings : ScriptableObject
 {
 
@@ -11,8 +11,8 @@ public class PlayerSettings : ScriptableObject
     [SerializeField] private float verticalSensitivity = 10f;
     [SerializeField] private bool invertY = false;
 
-    public float HorizontalSensitivity { get => horizontalSensitivity; set => SetHorizontal(value); }
-    public float VerticalSensitivity { get => verticalSensitivity; set => SetVertical(value); }
+    public float HorizontalSensitivity { get => horizontalSensitivity; }
+    public float VerticalSensitivity { get => verticalSensitivity; }
     public bool InvertY { get => invertY; set => SetInvertY(value); }
 
     private void Awake()
@@ -24,21 +24,25 @@ public class PlayerSettings : ScriptableObject
     public void SetHorizontal(float value)
     {
         horizontalSensitivity = value;
-        PlayerPrefs.GetFloat("HorizontalSensitivity", 10f);
+        PlayerPrefs.SetFloat("HorizontalSensitivity", 10f);
+        PlayerPrefs.Save();
     }
-
+    public void SetVertical(float value)
+    {
+        verticalSensitivity = value;
+        PlayerPrefs.SetFloat("VerticalSensitivity", 10f);
+        PlayerPrefs.Save();
+    }
 
     public void SetInvertY(bool value)
     {
         invertY = value;
         PlayerPrefs.SetInt("InvertY", value ? 1 : 0);
+        Debug.Log("Invert Y Called: " + invertY.ToString());
+        PlayerPrefs.Save();
     }
 
-    public void SetVertical(float value)
-    {
-        verticalSensitivity = value;
-        PlayerPrefs.SetFloat("VerticalSensitivity", 10f);
-    }
+    
 
 
 }

@@ -30,7 +30,6 @@ public class DebuggerTool : MonoBehaviour
     private void Start()
     {
         uiDoc = GetComponent<UIDocument>();
-        GetContentContainer();
         uiDoc.enabled = false;
     }
 
@@ -46,12 +45,6 @@ public class DebuggerTool : MonoBehaviour
             }
         }
     }
-
-    void Update()
-    {
-
-    }
-
     private void ExitDebuggerTool()
     {
         uiDoc.enabled = false;
@@ -61,7 +54,7 @@ public class DebuggerTool : MonoBehaviour
     private void EnterDebuggerTool()
     {
         uiDoc.enabled = true;
-        reader.EnableUI();
+        reader.EnableDebuggerTool();
     }
 
     private void Interact()

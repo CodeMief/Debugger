@@ -4,7 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
-public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInput.IUIActions
+public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInput.IUIActions, GameInput.IDebuggerToolActions
 {
     public event UnityAction<Vector3> moveEvent;
     public event UnityAction attackEvent;
@@ -12,9 +12,9 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     public event UnityAction reloadEvent;
     public event UnityAction exitDebuggerToolEvent;
     public event UnityAction jumpEvent;
-    public GameInput gameInput;
+    public GameInput gameInput { get; private set; }
     public event UnityAction<Vector2> lookEvent;
-
+    public event UnityAction escapeEvent;
     private void OnEnable()
     {
         if (gameInput == null)
@@ -30,33 +30,40 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
         DisableGameplay();
     }
 
-    private void DisableGameplay()
-    {
-        gameInput.Gameplay.Disable();
-    }
-    private void DisableUI()
-    {
-        gameInput.UI.Disable();
-    }
+
+    private void DisableGameplay() => gameInput.Gameplay.Disable();
+    private void DisableUI() => gameInput.UI.Disable();
+    private void DisableDebuggerTool() => gameInput.DebuggerTool.Disable();
 
     public void EnableGameplay()
     {
-        gameInput.Gameplay.Enable(); 
+        gameInput.Gameplay.Enable();
         gameInput.Gameplay.SetCallbacks(this);
         DisableUI();
+        DisableDebuggerTool();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-
     public void EnableUI()
     {
         gameInput.UI.Enable();
         gameInput.UI.SetCallbacks(this);
         DisableGameplay();
-        Cursor.lockState = CursorLockMode.Confined;
+        DisableDebuggerTool();
+        Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
-    
+    public void EnableDebuggerTool()
+    {
+        gameInput.DebuggerTool.Enable();
+        gameInput.DebuggerTool.SetCallbacks(this);
+        DisableGameplay();
+        DisableUI();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+
+    }
+
 
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -88,37 +95,12 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     {
         lookEvent?.Invoke(context.ReadValue<Vector2>());
     }
-
-    public void OnNavigate(InputAction.CallbackContext context)
+    public void OnEscape(InputAction.CallbackContext context)
     {
-    }
-
-    public void OnSubmit(InputAction.CallbackContext context)
-    {
-    }
-
-    public void OnCancel(InputAction.CallbackContext context)
-    {
-    }
-
-    public void OnPoint(InputAction.CallbackContext context)
-    {
-    }
-
-    public void OnClick(InputAction.CallbackContext context)
-    {
-    }
-
-    public void OnScrollWheel(InputAction.CallbackContext context)
-    {
-    }
-
-    public void OnMiddleClick(InputAction.CallbackContext context)
-    {
-    }
-
-    public void OnRightClick(InputAction.CallbackContext context)
-    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            escapeEvent?.Invoke();
+        }
     }
 
     public void OnSwitchMaps(InputAction.CallbackContext context)
@@ -152,5 +134,37 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
         {
             reloadEvent?.Invoke();
         }
+    }
+
+    public void OnNavigate(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnSubmit(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnCancel(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnPoint(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnClick(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnScrollWheel(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnMiddleClick(InputAction.CallbackContext context)
+    {
+    }
+
+    public void OnRightClick(InputAction.CallbackContext context)
+    {
     }
 }

@@ -9,4 +9,8 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        LoadScene();
+    }
 }

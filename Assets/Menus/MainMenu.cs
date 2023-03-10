@@ -5,10 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] public string _FirstLevelScene = "MainMenu";
+    [SerializeField] private string firstLevelScene = "Level01";
+    [SerializeField] private InputReader inputReader;
+
+    private void OnEnable()
+    {
+        inputReader.EnableUI();
+    }
     public void PlayButtonClicked()
     {
-        SceneManager.LoadScene(_FirstLevelScene);
+        inputReader.EnableGameplay();
+        SceneManager.LoadScene(firstLevelScene);
     }
     public void QuitButtonClicked()
     {
