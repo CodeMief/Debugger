@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyV1Behaviour : MonoBehaviour
+public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] Transform target;
     [SerializeField] private StatsSO stats;
@@ -15,8 +15,6 @@ public class EnemyV1Behaviour : MonoBehaviour
     [Range(0, 360)]
     [SerializeField]public float angle;
 
-    public GameObject playerRef;
-
     public LayerMask targetMask;
     public LayerMask obstructionMask;
 
@@ -25,10 +23,10 @@ public class EnemyV1Behaviour : MonoBehaviour
 
     private void Start()
     {
-        agent= GetComponent<NavMeshAgent>();
+        agent= GetComponentInParent<NavMeshAgent>();
         agent.stoppingDistance = 2;
         agent.speed = stats.MovementSpeed;
-        playerRef = GameObject.FindGameObjectWithTag("Player");
+        target = GameObject.FindGameObjectWithTag("Player").transform;
         StartCoroutine(FOVRoutine());
     }
 
@@ -46,7 +44,6 @@ public class EnemyV1Behaviour : MonoBehaviour
         transform.LookAt(target.position);
         if (TargetDistance > agent.stoppingDistance)
         {
-            
             ChaseTarget();
         }
 
@@ -69,11 +66,9 @@ public class EnemyV1Behaviour : MonoBehaviour
 
     private IEnumerator FOVRoutine()
     {
-        WaitForSeconds wait = new WaitForSeconds(0.2f);
-
         while (true)
         {
-            yield return wait;
+            yield return new WaitForSeconds(0.2f);
             FieldOfViewCheck();
         }
     }
