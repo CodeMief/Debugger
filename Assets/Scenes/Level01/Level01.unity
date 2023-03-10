@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.7
+  m_AmbientIntensity: 0
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.13300107, g: 0.13812746, b: 0.1509434, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.3
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.05408514, g: 0.06771424, b: 0.09207686, a: 0.3}
+  m_IndirectSpecularColor: {r: 0.03819525, g: 0.040244274, b: 0.03632361, a: 0.3}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1422,7 +1422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84787ffcfec4cec4c9992854d4ac19f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Door: {fileID: 2035789909}
+  Door: {fileID: 0}
   targetPosition: {x: -42, y: -6, z: 54}
   speed: 1.5
 --- !u!65 &77984985
@@ -41604,12 +41604,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6954531691785998512, guid: cf8443763fc34314490f8a3e2f94dd37,
     type: 3}
   m_PrefabInstance: {fileID: 1127142358}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2035789909 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2327915002177047577, guid: d324de115c4dff845bee7b7f166883c4,
-    type: 3}
-  m_PrefabInstance: {fileID: 722377134}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2037831200 stripped
 Transform:
