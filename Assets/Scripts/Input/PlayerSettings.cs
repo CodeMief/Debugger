@@ -24,7 +24,8 @@ public class PlayerSettings : ScriptableObject
     public void SetHorizontal(float value)
     {
         horizontalSensitivity = value;
-        PlayerPrefs.GetFloat("HorizontalSensitivity", 10f);
+        PlayerPrefs.SetFloat("HorizontalSensitivity", 10f);
+        PlayerPrefs.Save();
     }
 
 
@@ -32,12 +33,15 @@ public class PlayerSettings : ScriptableObject
     {
         invertY = value;
         PlayerPrefs.SetInt("InvertY", value ? 1 : 0);
+        Debug.Log("Invert Y Called: "+invertY.ToString());
+        PlayerPrefs.Save();
     }
 
     public void SetVertical(float value)
     {
         verticalSensitivity = value;
         PlayerPrefs.SetFloat("VerticalSensitivity", 10f);
+        PlayerPrefs.Save();
     }
 
 

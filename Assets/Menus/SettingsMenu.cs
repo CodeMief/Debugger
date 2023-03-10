@@ -8,8 +8,16 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
-    public TMPro.TMP_Dropdown resolutionDropdown;
+    public TMP_Dropdown resolutionDropdown;
     [SerializeField] PlayerSettings ps;
+    [SerializeField] InputReader inputReader;
+    [SerializeField] Toggle invertY;
+
+    private void Start()
+    {
+        inputReader.EnableUI();
+        invertY.isOn = ps.InvertY;
+    }
     private void ConvertToResolution(string text, bool isFullScreen)
     {
         string[] resolutions = text.Split("x");

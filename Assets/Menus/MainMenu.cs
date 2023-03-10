@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] public string _FirstLevelScene = "MainMenu";
+    [SerializeField] private string _FirstLevelScene = "MainMenu";
+    [SerializeField] private InputReader inputReader;
     public void PlayButtonClicked()
     {
+        inputReader.EnableGameplay();
         SceneManager.LoadScene(_FirstLevelScene);
     }
     public void QuitButtonClicked()

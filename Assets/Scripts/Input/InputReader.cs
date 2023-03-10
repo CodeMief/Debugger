@@ -12,9 +12,9 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     public event UnityAction reloadEvent;
     public event UnityAction exitDebuggerToolEvent;
     public event UnityAction jumpEvent;
-    public GameInput gameInput;
+    public GameInput gameInput { get; private set; }
     public event UnityAction<Vector2> lookEvent;
-
+    public event UnityAction escapeEvent;
     private void OnEnable()
     {
         if (gameInput == null)
@@ -88,7 +88,13 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
     {
         lookEvent?.Invoke(context.ReadValue<Vector2>());
     }
-
+    public void OnEscape(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Performed)
+        {
+            escapeEvent?.Invoke();
+        }
+    }
     public void OnNavigate(InputAction.CallbackContext context)
     {
     }

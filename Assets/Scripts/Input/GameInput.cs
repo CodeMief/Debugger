@@ -89,6 +89,15 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""04d286f9-89f9-4145-84df-3e19298edd2c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -377,6 +386,17 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6321de46-527b-431b-beca-2142604b6d91"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -469,6 +489,15 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""name"": ""ExitDebuggerTool"",
                     ""type"": ""Button"",
                     ""id"": ""d1ade198-1387-4cb0-a53d-5cde9eec4f98"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""71c9a63a-8837-4e4d-9de4-15aa166621f8"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -841,23 +870,23 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4800b249-5788-4573-8501-e78a7d36ab8a"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""ExitDebuggerTool"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""28f58eb6-82e8-4619-8f2b-aee4d624fed0"",
                     ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ExitDebuggerTool"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3046a97a-2d49-405c-afc9-4684ac7ad678"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Escape"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -903,6 +932,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         m_Gameplay_Look = m_Gameplay.FindAction("Look", throwIfNotFound: true);
         m_Gameplay_SwitchMaps = m_Gameplay.FindAction("SwitchMaps", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
+        m_Gameplay_Escape = m_Gameplay.FindAction("Escape", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -915,6 +945,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         m_UI_RightClick = m_UI.FindAction("RightClick", throwIfNotFound: true);
         m_UI_SwitchMaps = m_UI.FindAction("SwitchMaps", throwIfNotFound: true);
         m_UI_ExitDebuggerTool = m_UI.FindAction("ExitDebuggerTool", throwIfNotFound: true);
+        m_UI_Escape = m_UI.FindAction("Escape", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -981,6 +1012,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Look;
     private readonly InputAction m_Gameplay_SwitchMaps;
     private readonly InputAction m_Gameplay_Jump;
+    private readonly InputAction m_Gameplay_Escape;
     public struct GameplayActions
     {
         private @GameInput m_Wrapper;
@@ -992,6 +1024,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Gameplay_Look;
         public InputAction @SwitchMaps => m_Wrapper.m_Gameplay_SwitchMaps;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
+        public InputAction @Escape => m_Wrapper.m_Gameplay_Escape;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1022,6 +1055,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
+                @Escape.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEscape;
+                @Escape.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEscape;
+                @Escape.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnEscape;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -1047,6 +1083,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Escape.started += instance.OnEscape;
+                @Escape.performed += instance.OnEscape;
+                @Escape.canceled += instance.OnEscape;
             }
         }
     }
@@ -1065,6 +1104,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_RightClick;
     private readonly InputAction m_UI_SwitchMaps;
     private readonly InputAction m_UI_ExitDebuggerTool;
+    private readonly InputAction m_UI_Escape;
     public struct UIActions
     {
         private @GameInput m_Wrapper;
@@ -1079,6 +1119,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         public InputAction @RightClick => m_Wrapper.m_UI_RightClick;
         public InputAction @SwitchMaps => m_Wrapper.m_UI_SwitchMaps;
         public InputAction @ExitDebuggerTool => m_Wrapper.m_UI_ExitDebuggerTool;
+        public InputAction @Escape => m_Wrapper.m_UI_Escape;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1118,6 +1159,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @ExitDebuggerTool.started -= m_Wrapper.m_UIActionsCallbackInterface.OnExitDebuggerTool;
                 @ExitDebuggerTool.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnExitDebuggerTool;
                 @ExitDebuggerTool.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnExitDebuggerTool;
+                @Escape.started -= m_Wrapper.m_UIActionsCallbackInterface.OnEscape;
+                @Escape.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnEscape;
+                @Escape.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnEscape;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1152,6 +1196,9 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @ExitDebuggerTool.started += instance.OnExitDebuggerTool;
                 @ExitDebuggerTool.performed += instance.OnExitDebuggerTool;
                 @ExitDebuggerTool.canceled += instance.OnExitDebuggerTool;
+                @Escape.started += instance.OnEscape;
+                @Escape.performed += instance.OnEscape;
+                @Escape.canceled += instance.OnEscape;
             }
         }
     }
@@ -1183,6 +1230,7 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnSwitchMaps(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
@@ -1196,5 +1244,6 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         void OnRightClick(InputAction.CallbackContext context);
         void OnSwitchMaps(InputAction.CallbackContext context);
         void OnExitDebuggerTool(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
     }
 }

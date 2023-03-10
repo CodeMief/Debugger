@@ -30,7 +30,6 @@ public class DebuggerTool : MonoBehaviour
     private void Start()
     {
         uiDoc = GetComponent<UIDocument>();
-        GetContentContainer();
         uiDoc.enabled = false;
     }
 
