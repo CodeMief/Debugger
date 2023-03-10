@@ -1,26 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+
+
+
+
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] InputReader inputReader;
-    [SerializeField] GameObject pauseMenu, settingsMenu;
-    private void OnEnable()
+    public static bool _Paused = false;
+    public GameObject _PauseMenuCanvas;
+    public string _MainMenuScene = "MainMenu";
+
+
+    void Start()
     {
-        inputReader.EnableUI();
+        Time.timeScale = 1.0f;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (_Paused)
+            {
+                ResumeGame();
+            }
+            else
+            {
+                OpenPauseMenu();
+            }
+        }
+    }
+
+    void OpenPauseMenu()
+    {
+        _PauseMenuCanvas.SetActive(true);
         Time.timeScale = 0f;
-        pauseMenu.SetActive(true);
-        settingsMenu.SetActive(false);
+        _Paused = true;
+        Debug.Log("Testing opening menu.");
+
     }
-    private void OnDisable()
+    public void ResumeGame()
     {
-        Time.timeScale = 1f;
-        inputReader.EnableGameplay();
+        _PauseMenuCanvas.SetActive(false);
+        Time.timeScale = 1.0f;
+        _Paused = false;
+        Debug.Log("Testing resuming button.");
+
+    }
+    public void ReturnToMainMenu()
+    {
+        SceneManager.LoadScene(_MainMenuScene);
+        Debug.Log("Testing main menu button.");
+
     }
 
+    
 
 
-
-}
+} 

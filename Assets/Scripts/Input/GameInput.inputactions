@@ -67,15 +67,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Escape",
-                    "type": "Button",
-                    "id": "04d286f9-89f9-4145-84df-3e19298edd2c",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -364,17 +355,6 @@
                     "action": "Reload",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6321de46-527b-431b-beca-2142604b6d91",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Escape",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -467,15 +447,6 @@
                     "name": "ExitDebuggerTool",
                     "type": "Button",
                     "id": "d1ade198-1387-4cb0-a53d-5cde9eec4f98",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Escape",
-                    "type": "Button",
-                    "id": "71c9a63a-8837-4e4d-9de4-15aa166621f8",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -848,23 +819,23 @@
                 },
                 {
                     "name": "",
-                    "id": "28f58eb6-82e8-4619-8f2b-aee4d624fed0",
-                    "path": "<Gamepad>/buttonEast",
+                    "id": "4800b249-5788-4573-8501-e78a7d36ab8a",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "ExitDebuggerTool",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "3046a97a-2d49-405c-afc9-4684ac7ad678",
-                    "path": "<Keyboard>/escape",
+                    "id": "28f58eb6-82e8-4619-8f2b-aee4d624fed0",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Escape",
+                    "groups": "",
+                    "action": "ExitDebuggerTool",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
