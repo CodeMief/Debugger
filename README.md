@@ -19,11 +19,11 @@ Get ready for an exciting FPS puzzle game where you master the basics of shootin
 
 Debugger is the collaborative effort of a talented team of six developers who share a passion for creating immersive gaming experiences. Our team consists of:
 
-- CodeMief: Story/UI 
-- Gino: Story/UI
-- hastogazpachoes: Mechanics
-- AspectGale: Mechanics
+- [CodeMief](https://codemief.itch.io): Story/UI 
+- [GinoStock](https://ginostock.itch.io): Story/UI
+- [hastogazpachoes](https://hastogazpachoes.itch.io): Mechanics
+- [AspectGale](https://aspectgale.itch.io): Mechanics
+- [Espilonius](https://espilonius.itch.io): Level Design
 - Kwadjo: Level Design
-- Espilonius: Level Design
 
 
