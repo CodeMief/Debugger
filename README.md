@@ -1,6 +1,9 @@
 # Debugger - FPS Puzzle Game(Prototype)
-[Itch.io Play Debugger](https://fontys-gdt.itch.io/debugger)
 Debugger is a project started by 6 students from ICT Fontys with the task to build a first person 3D game. We want to show the player the behind the scenes of game design and how nowadays it is a feature to see bugs in games.
+
+## Play Now
+[Itch.io - Debugger](https://fontys-gdt.itch.io/debugger)
+
 
 ## Gameplay
 
