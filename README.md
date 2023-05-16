@@ -24,6 +24,6 @@ Debugger is the collaborative effort of a talented team of six developers who sh
 - [hastogazpachoes](https://hastogazpachoes.itch.io): Mechanics
 - [AspectGale](https://aspectgale.itch.io): Mechanics
 - [Espilonius](https://espilonius.itch.io): Level Design
-- Kwadjo: Level Design
+- [Kwadjo](https://github.com/demgg): Level Design
 
 
